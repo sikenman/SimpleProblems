@@ -7,15 +7,13 @@ using namespace std;
  */
  
 int max_of_four(int a, int b, int c, int d) {
-    int ab;
-    int cd;
+    int ab, cd;
+    
     if(a>=b) ab=a; else ab = b;
     if(c>=d) cd=c; else cd = d;
     
-    int max;
-    if(ab>=cd) max=ab; else max=cd;
-    
-    return max;
+    if(ab>=cd) return ab;
+     else return cd;
 }
 
 int main() {
