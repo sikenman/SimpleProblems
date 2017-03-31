@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;      // used for Except() method
+using System.Linq;
 
 namespace ConAppListExcept
 {
@@ -16,40 +16,40 @@ namespace ConAppListExcept
         static void Main(string[] args)
         {
             // By using Array ---------------------------------------------------------
-            CustomList[] list1 = {
-                new CustomList("ID9","Apple",12.5f),
-                new CustomList("ID12","Banana",9.3f),
-                new CustomList("ID10","Orange",8.4f),
-                new CustomList("ID11","Lemon",4.3f),
-                new CustomList("ID13","Mango",7.7f)
+            CustomItem[] list1 = {
+                new CustomItem("ID09","Apple ",12.5f),
+                new CustomItem("ID12","Banana",9.3f),
+                new CustomItem("ID10","Orange",8.4f),
+                new CustomItem("ID11","Lemon ",4.3f),
+                new CustomItem("ID13","Mango ",7.7f)
             };
 
-            CustomList[] list2 = {
-                new CustomList("ID9","Apple",12.5f),
-                new CustomList("ID11","Lemon",4.3f)
+            CustomItem[] list2 = {
+                new CustomItem("ID09","Apple ",12.5f),
+                new CustomItem("ID11","Lemon ",4.3f)
             };
 
             //Get all the elements from the first array
             //except for the elements from the second array.
 
-            IEnumerable<CustomList> except = list1.Except(list2, new ListComparer());
+            IEnumerable<CustomItem> except = list1.Except(list2, new ListComparer());   // core logic
             foreach (var each in except)
                 each.DisplayList();
 
             Console.WriteLine();
 
             // By using List ----------------------------------------------------------
-            List<CustomList> listA = new List<CustomList>();
-            listA.Add(new CustomList("Item-01", "Dell Laptop", 499.99f));
-            listA.Add(new CustomList("Item-03", "Beats Headphone", 150.00f));
-            listA.Add(new CustomList("Item-05", "Bluetooth Keyboard", 39.99f));
-            listA.Add(new CustomList("Item-07", "MS Windows 10 Prof", 98.99f));
+            List<CustomItem> listA = new List<CustomItem>();
+            listA.Add(new CustomItem("Item-01", "Dell Laptop       ", 499.99f));
+            listA.Add(new CustomItem("Item-03", "Beats Headphone   ", 150.00f));
+            listA.Add(new CustomItem("Item-05", "Bluetooth Keyboard", 39.99f));
+            listA.Add(new CustomItem("Item-07", "MS Windows 10 Prof", 98.99f));
 
-            List<CustomList> listB = new List<CustomList>();
-            listB.Add(new CustomList("Item-03", "Beats Headphone", 150.00f));
-            listB.Add(new CustomList("Item-07", "MS Windows 10 Prof", 98.76f));     //price is different but Code is same
+            List<CustomItem> listB = new List<CustomItem>();
+            listB.Add(new CustomItem("Item-03", "Beats Headphone   ", 150.00f));
+            listB.Add(new CustomItem("Item-07", "MS Windows 10 Prof", 98.99f));     //price is different but Code is same
 
-            IEnumerable<CustomList> except2 = listA.Except(listB, new ListComparer());
+            IEnumerable<CustomItem> except2 = listA.Except(listB, new ListComparer());
             foreach (var each in except2)
                 each.DisplayList();
 
@@ -57,13 +57,13 @@ namespace ConAppListExcept
         }
     }
 
-    public class CustomList
+    public class CustomItem
     {
         public string Code { get; set; }
         public string Name { get; set; }
         public float Price { get; set; }
 
-        public CustomList(string code, string name, float price)
+        public CustomItem(string code, string name, float price)
         {
             this.Code = code;
             this.Name = name;
@@ -76,10 +76,10 @@ namespace ConAppListExcept
         }
     }
 
-    class ListComparer : IEqualityComparer<CustomList>
+    class ListComparer : IEqualityComparer<CustomItem>
     {
-        // CustomList are equal if their codes are equal.
-        public bool Equals(CustomList x, CustomList y)
+        // CustomItem are equal if their codes are equal.
+        public bool Equals(CustomItem x, CustomItem y)
         {
             // Check whether any of the compared objects is null.
             if (Object.ReferenceEquals(x, null) || Object.ReferenceEquals(y, null))
@@ -92,7 +92,7 @@ namespace ConAppListExcept
         // If Equals() returns true for a pair of objects 
         // then GetHashCode() must return the same value for these objects.
 
-        public int GetHashCode(CustomList cl)
+        public int GetHashCode(CustomItem cl)
         {
             int result = 17;
 
