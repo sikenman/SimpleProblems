@@ -47,7 +47,7 @@ namespace ConAppListExcept
 
             List<CustomList> listB = new List<CustomList>();
             listB.Add(new CustomList("Item-03", "Beats Headphone", 150.00f));
-            listB.Add(new CustomList("Item-07", "MS Windows 10 Prof", 98.99f));     //price is different but Code is same
+            listB.Add(new CustomList("Item-07", "MS Windows 10 Prof", 98.76f));     //price is different but Code is same
 
             IEnumerable<CustomList> except2 = listA.Except(listB, new ListComparer());
             foreach (var each in except2)
