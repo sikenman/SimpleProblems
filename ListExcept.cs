@@ -38,7 +38,7 @@ namespace ConAppListExcept
 
             Console.WriteLine();
 
-            // By using Array ---------------------------------------------------------
+            // By using List ----------------------------------------------------------
             List<CustomList> listA = new List<CustomList>();
             listA.Add(new CustomList("Item-01", "Dell Laptop", 499.99f));
             listA.Add(new CustomList("Item-03", "Beats Headphone", 150.00f));
